@@ -8,7 +8,7 @@ body {
 </style>
 <script>
  $(document).ready(function(){
- setInterval(function(){cache_clear()},6000);
+ setInterval(function(){cache_clear()},60000);
  });
  function cache_clear()
 {
@@ -35,22 +35,23 @@ curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY); // Need SSL
 curl_setopt($curl, CURLOPT_USERPWD,"$login:$pass"); 
 
 // store data
-$data  = curl_exec ($curl);
+$dt  = curl_exec ($curl);
 
 // open file and write data
 $fl = fopen('sigfoxData.json','a'); // write json file sigfoxData.json for test
-{      fwrite($fl, $data);
+{      fwrite($fl, $dt);
        fclose($fl);
 }
 	 
 // displaying data	 
 $json_url = "http://yoururl/sigfoxData.json";
 $json = file_get_contents($json_url);
-$data = json_decode($json, TRUE);
+$dt = json_decode($json, TRUE);
+/*
 echo "<pre>";
 print_r($data);
 echo "</pre>";
-
+*/
 curl_close($curl);
 ?> 
  
@@ -81,13 +82,11 @@ curl_close($curl);
     <td><strong>
     Description</strong></td>
     <td height="10">
-    
 	<? echo "<pre>";
-	//echo $dt['data'][0]['description'];
-	//echo "</pre>";
+	echo $dt['data'][0]['description'];
+	echo "</pre>";
 	?>
-
-    </td>
+  </td>
   </tr>
   <tr>
     <td><strong>
@@ -102,11 +101,9 @@ curl_close($curl);
     <td><strong>
     Contract</strong></td>
     <td height="23">
-
 	<? echo "<pre>";
-	//echo $dt['data'][0]['contract'];
-	//echo "</pre>";?>
-
+	echo $dt['data'][0]['contract'];
+	echo "</pre>";?>
     </td>
   </tr>
   <tr>
@@ -137,22 +134,23 @@ curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY); // Need SSL
 curl_setopt($curl, CURLOPT_USERPWD,"$login:$pass"); 
 
 // store data
-$data  = curl_exec ($curl);
+$dt  = curl_exec ($curl);
 
 // open file and write data
 $fl = fopen('sigfoxMsg.json','a'); // write json file sigfoxMsg.json for test
-{      fwrite($fl, $data);
+{      fwrite($fl, $dt);
        fclose($fl);
 }
 	 
 // displaying data	 
 $json_url = "http://yoururl/sigfoxMsg.json";
 $json = file_get_contents($json_url);
-$data = json_decode($json, TRUE);
+$dt = json_decode($json, TRUE);
+/*
 echo "<pre>";
 print_r($data);
 echo "</pre>";
-
+*/
 curl_close($curl);
 ?> 
 
